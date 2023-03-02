@@ -18,6 +18,9 @@ fluid.defaults("bergson.test.testem", {
     hookTestem: false,
     hookQUnit: true,
     instrumentedSourceDir: "%bergson/instrumented",
+    instrumentationOptions: {
+        nonSources: ["./js/worker-*.js"]
+    },
     reportsDir: "%bergson/reports",
     browserArgs: {
         // The `--headless` arg is needed until https://issues.fluid.net/browse/fluid-4145 is resolved.

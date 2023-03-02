@@ -7,7 +7,7 @@ require("../");
 require("fluid-testem");
 
 fluid.defaults("bergson.test.testem.webaudio", {
-    gradeNames: ["fluid.testem"],
+    gradeNames: ["fluid.testem.instrumentation"],
     sourceDirs: {
         src: "%bergson/src"
     },
@@ -15,7 +15,12 @@ fluid.defaults("bergson.test.testem.webaudio", {
         tests:   "%fluid-binder/tests"
     },
     testPages: ["tests/html/audiocontext-clock-tests.html"],
+
     instrumentedSourceDir: "%bergson/instrumented",
+    instrumentationOptions: {
+        nonSources: ["./src/js/worker-*.js"]
+    },
+
     reportsDir: "%bergson/reports",
     browserArgs: {
         "Chrome": [
