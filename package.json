@@ -19,13 +19,14 @@
     ],
     "readmeFilename": "README.md",
     "devDependencies": {
-        "node-jqunit": "1.1.9",
-        "sheep-benchmark": "colinbdclark/sheep.js",
+        "fluid-grunt-eslint": "18.1.2",
+        "fluid-testem": "2.1.15",
         "grunt": "1.6.1",
         "grunt-contrib-clean": "2.0.1",
         "grunt-contrib-concat": "2.1.0",
         "grunt-contrib-uglify": "5.2.2",
-        "fluid-grunt-eslint": "18.1.2",
+        "node-jqunit": "1.1.9",
+        "sheep-benchmark": "colinbdclark/sheep.js",
         "testem": "3.10.1"
     },
     "dependencies": {
@@ -33,9 +34,11 @@
     },
     "scripts": {
         "prepare": "npx grunt",
-        "browser-core-test": "npx testem ci --file tests/testem.json",
-        "webaudio-test": "npx testem ci --file tests/testem-webaudio.json",
+        "browser-core-test": "npx testem ci --file tests/testem.js",
+        "webaudio-test": "npx testem ci --file tests/testem-webaudio.js",
         "node-test": "node tests/node-all-tests.js",
-        "test": "npm run node-test && npm run webaudio-test && npm run browser-core-test"
+	"pretest": "npx rimraf reports instrumented",
+        "test": "npm run node-test && npm run webaudio-test && npm run browser-core-test",
+	"posttest": "npx nyc report --temp-directory coverage --reporter text-summary --reporter html"
     }
 }

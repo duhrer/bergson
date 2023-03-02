@@ -19,4 +19,6 @@ require("./src/js/priority-queue.js");
 require("./src/js/clock-logger.js");
 require("./src/js/scheduler.js");
 
+fluid.module.register("bergson", __dirname, require);
+
 module.exports = berg;
